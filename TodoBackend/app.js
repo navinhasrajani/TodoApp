@@ -1,13 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
+const cors = require('cors');
 const connectDB = require('./db/conn');
 const todoRoutes = require('./routes/todoRoutes');
 const authRoutes = require('./routes/authRoutes');
 const dotenv = require('dotenv');
 
+const app = express();
 dotenv.config();
 app.use(express.json());
+
+app.use(cors({
+  origin: 'http://localhost:5173', // Adjust as needed
+  credentials: true, // Allow cookies to be sent with requests
+}));
 app.use('/todos', todoRoutes);
 app.use('/auth', authRoutes);
 app.get('/', (req, res) => {

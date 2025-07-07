@@ -1,10 +1,13 @@
+import {useTheme} from './context/ThemeContext';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 function App() {
-
+  const {theme, toggleTheme} = useTheme();
   return (
     <>
-      <div className="flex flex-col"> 
-        <p> FrontEnd Starts here </p>
-        <p>Another para</p>
+      <div> 
+        <Login />
+        {/* <SignUp/> */}
       </div>
     </>
   )

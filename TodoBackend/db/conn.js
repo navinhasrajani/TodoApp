@@ -6,8 +6,7 @@ const connectDB = async() => {
     try{
         console.log('Connecting to ', process.env.MONGO_DB_URL);
         const conn = await mongoose.connect(process.env.MONGO_DB_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
+            // No options are needed here as useNewUrlParser and useUnifiedTopology are default in Mongoose 6+
         });
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     }
