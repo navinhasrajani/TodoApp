@@ -1,37 +1,46 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom"; // If using React Router for navigation
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+  const [error, setError] = useState("");
+
+  const { dispatch } = useAuth();
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const res = await axios.post('http://localhost:3000/auth/login', {
-      email,
-      password,
-    });
+    try {
+      const res = await axios.post("http://localhost:3000/auth/login", {
+        email,
+        password,
+      });
 
-    setError(""); // Clear any previous error
-    localStorage.setItem("token", res.data.token);
-    console.log("Login successful:", res.data);
+      setError(""); // Clear any previous error
+      localStorage.setItem("token", res.data.token);
 
-    // Optionally redirect:
-    // window.location.href = "/"; // or use navigate("/"); if using React Router
+      dispatch({
+        type: "LOGIN",
+        payload: { token: res.data.token, user: res.data.user },
+      });
 
-  } catch (error) {
-    const message =
-      error.response?.data?.message || "Login failed";
-    setError(message);
-    console.error("Login failed:", message);
-  }
-};
+      console.log("Login successful:", res.data);
+      navigate("/"); // Navigate to home
+    } catch (error) {
+      const message = error.response?.data?.message || "Login failed";
+      setError(message);
+      console.error("Login failed:", message);
+    }
+  };
   return (
     <form onSubmit={handleSubmit}>
       <table>
         <tbody>
-            <tr>
+          <tr>
             <td>
               <label htmlFor="email">Email</label>
             </td>

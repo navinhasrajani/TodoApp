@@ -7,6 +7,7 @@ const todoSchema = new mongoose.Schema({
     description: {type: String, maxLength: 500},
     isCompleted: {type: Boolean, default: false},
     priority: {type: String, enum: ['low', 'medium', 'high'], default: 'medium'},
+    category: {type: String, maxLength: 100, default: 'general'},
     createdAt: {type: Date,default: Date.now},
 })
 

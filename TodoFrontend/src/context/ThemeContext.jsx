@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const ThemeConext = createContext();
 
@@ -8,6 +8,13 @@ const ThemeProvider = ({children}) => {
     const toggleTheme = () => {
         setTheme( currTheme => currTheme === 'light' ? 'dark' : 'light');
     }
+
+    useEffect(() => {
+        console.log("useEffect mainting theme ran");
+        const root = document.documentElement;
+        theme === "dark" ? root.classList.add('dark') : root.classList.remove('dark');
+    }, [theme])
+    
 
     return(
         <ThemeConext.Provider value = {{theme, toggleTheme}}>

@@ -1,0 +1,21 @@
+.navbar {
+  border: 1px black solid;
+  padding: 2vh 2vw;
+  text-align: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px; /* adjust as needed */
+  padding: 8px;
+}
+
+.logo img{
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}

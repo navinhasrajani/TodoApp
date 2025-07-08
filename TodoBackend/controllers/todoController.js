@@ -15,8 +15,8 @@ const getTodos = async (req, res) => {
 //Create new todo
 const createTodo = async (req, res) => {
     try {
-        const { title, description, priority } = req.body;
-
+        const { title, description, priority, category } = req.body;
+        console.log(title, description, priority, category);
         if (!title) {
             return res.status(400).json({ message: 'Title is required' });
         }
@@ -26,10 +26,11 @@ const createTodo = async (req, res) => {
             title,
             description,
             priority: priority || 'medium',
+            category,
         })
 
         const savedTodo = await newTodo.save();
-        // console.log(savedTodo);
+        console.log(savedTodo);
         res.status(201).json(savedTodo);
     }
     catch (err) {
@@ -48,7 +49,7 @@ const updateTodo = async (req, res) => {
         }
         const updatedTodo = await Todo.findByIdAndUpdate(
             { _id: req.params.id, user: req.user.id },
-            { title, description, priority },
+            { title, description, priority, category },
             { new: true, runValidators: true }
         );
         if (!updatedTodo) {
