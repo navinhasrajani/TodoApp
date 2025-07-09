@@ -1,6 +1,5 @@
 //Todo controllers
 const Todo = require('../models/Todo');
-
 // Get all todos
 const getTodos = async (req, res) => {
     try {
@@ -30,7 +29,7 @@ const createTodo = async (req, res) => {
         })
 
         const savedTodo = await newTodo.save();
-        console.log(savedTodo);
+        // console.log(savedTodo);
         res.status(201).json(savedTodo);
     }
     catch (err) {
@@ -41,16 +40,11 @@ const createTodo = async (req, res) => {
 // Update todo by ID
 const updateTodo = async (req, res) => {
     try {
-        const { title, description, priority } = req.body;
+        const { title, description, priority, isCompleted, category } = req.body;
         const todoId = req.params.id;
-
-        if (!title) {
-            return res.status(400).json({ message: 'Title is required' });
-        }
         const updatedTodo = await Todo.findByIdAndUpdate(
-            { _id: req.params.id, user: req.user.id },
-            { title, description, priority, category },
-            { new: true, runValidators: true }
+            { _id: todoId, user: req.user.id },
+            { title, description, priority, category, isCompleted },
         );
         if (!updatedTodo) {
             return res.status(404).json({ message: 'Todo not found' });

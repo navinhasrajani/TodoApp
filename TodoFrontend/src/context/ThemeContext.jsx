@@ -10,7 +10,6 @@ const ThemeProvider = ({children}) => {
     }
 
     useEffect(() => {
-        console.log("useEffect mainting theme ran");
         const root = document.documentElement;
         theme === "dark" ? root.classList.add('dark') : root.classList.remove('dark');
     }, [theme])

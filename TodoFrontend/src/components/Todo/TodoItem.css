@@ -1,0 +1,56 @@
+/* src/components/Todo/TodoItem.css */
+
+.todo-card {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: white;
+}
+
+.todo-card.completed {
+  background-color: #e0ffe0;
+}
+
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-description {
+  font-style: italic;
+  text-decoration: underline;
+  color: #555;
+}
+
+.todo-created {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.todo-tags {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.todo-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  background-color: #f0f0f0;
+}
+
+.priority-low {
+  background-color: #def;
+}
+
+.priority-medium {
+  background-color: #ffd;
+}
+
+.priority-high {
+  background-color: #fdd;
+}
