@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./db/conn');
 const todoRoutes = require('./routes/todoRoutes');
 const authRoutes = require('./routes/authRoutes');
+const categoryRouter = require('./routes/categoryRoutes');
 const dotenv = require('dotenv');
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(cors({
 }));
 app.use('/todos', todoRoutes);
 app.use('/auth', authRoutes);
+app.use('/categories', categoryRouter);
 app.get('/', (req, res) => {
   res.send('✅ Todo API is up and running!');
 });

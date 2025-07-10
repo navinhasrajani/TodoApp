@@ -4,6 +4,7 @@ import axios from "axios";
 import TodoItem from "../components/Todo/TodoItem";
 const Todo = () => {
   const [todos, dispatch] = useReducer(todoReducer, []);
+  const [searchTerm, setSearchTerm] = useState("")
 
   //fetching todos
   useEffect(() => {
@@ -60,9 +61,9 @@ const Todo = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(res.data);
+      // console.log(res.data);
       if (res.status === 200) {
-        dispatch({ type: "TOGGLE_TODO", payload: {_id: todo._id} });
+        dispatch({ type: "TOGGLE_TODO", payload: { _id: todo._id } });
         console.log("Todo toggled successfully");
       } else {
         console.error("Failed to toggle todo--", res.data);
@@ -71,19 +72,26 @@ const Todo = () => {
       console.error("Failed to toggle todo-", err.message);
     }
   };
+
+  const filteredTodos = todos.filter((todo) =>
+  `${todo.title} ${todo.description || ""}`
+    .toLowerCase()
+    .includes(searchTerm.toLowerCase())
+);
   return (
     <div className="home flex flex-col justify-center">
-      
       <h1 className="flex content-center justify-center text-6xl">Todos</h1>
       <div className="flex justify-end mb-4">
         <input
           type="text"
           placeholder="Search in todos..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="flex px-4 py-2 mr-4 underline rounded-md w-64 bg-gray-200"
         />
       </div>
 
-      {todos.map((todo) => (
+      {filteredTodos.map((todo) => (
         <TodoItem
           todo={todo}
           key={todo._id}

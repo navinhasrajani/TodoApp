@@ -15,11 +15,18 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
   return (
     <div className={`todo-card ${isCompleted ? "completed" : ""}`}>
       <div className="todo-header">
-        <h3 className="font-bold">{title}</h3>
+        <h3 className="font-bold" style={isCompleted ? { textDecoration: "line-through" } : {}}>
+          {title}
+        </h3>
         <button onClick={() => onDelete(_id)}>❌</button>
       </div>
 
-      <p className="todo-description">{description || "No description"}</p>
+      <p
+        className="todo-description"
+        style={isCompleted ? { textDecoration: "line-through" } : {}}
+      >
+        {description || "No description"}
+      </p>
 
       <div className="todo-created">
         <strong>Created:</strong> {moment(createdAt).format("MMM D, YYYY hh:mm A")}

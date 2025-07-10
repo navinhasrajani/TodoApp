@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import Todo from './pages/Todo';
 import Categories from './pages/Categories';
+import CategoryItem from './components/Category/CategoryItem';
 function App() {
   const {theme, toggleTheme} = useTheme();
   return (
