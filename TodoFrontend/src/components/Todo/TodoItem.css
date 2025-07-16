@@ -20,11 +20,12 @@
 
 .todo-description {
   font-style: italic;
-  text-decoration: underline;
+  font-size: 0.9rem;
   color: #555;
 }
 
 .todo-created {
+  font-style: italic;
   font-size: 0.85rem;
   color: #777;
 }

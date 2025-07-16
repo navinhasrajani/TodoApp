@@ -25,7 +25,7 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
         className="todo-description"
         style={isCompleted ? { textDecoration: "line-through" } : {}}
       >
-        {description || "No description"}
+        <strong>Description:</strong> {description || "No description"}
       </p>
 
       <div className="todo-created">

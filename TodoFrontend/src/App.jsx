@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Todo from './pages/Todo';
 import Categories from './pages/Categories';
 import CategoryItem from './components/Category/CategoryItem';
+import Profile from './pages/Profile';
 function App() {
   const {theme, toggleTheme} = useTheme();
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   )

@@ -62,10 +62,11 @@ const Home = () => {
         todos.
       </p>
 
-      <h2 className="text-xl font-semibold mb-2">🕒 Latest Todos</h2>
       {latestTodos.length === 0 ? (
-        <p className="text-gray-500 italic">No todos found.</p>
+        <p className="text-gray-500 italic mb-2">No recently added todos found.</p>
       ) : (
+        <>
+        <h2 className="text-xl font-semibold mb-2">🕒 Latest Todos</h2>
         <ul className="space-y-2 mb-6">
           {latestTodos.map((todo) => (
             <li
@@ -79,10 +80,11 @@ const Home = () => {
             </li>
           ))}
         </ul>
+        </>
       )}
 
       <div className="mb-6 p-4 bg-yellow-100 border-l-4 border-yellow-400 rounded text-gray-800 italic">
-        <p>“{quote}”</p>
+        <p>“{quote || 'loading quote'}”</p>
       </div>
 
       <Link

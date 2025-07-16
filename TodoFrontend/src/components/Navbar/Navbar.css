@@ -1,9 +1,15 @@
 .navbar {
+  overflow: hidden;
   border: 1px black solid;
   padding: 2vh 2vw;
   text-align: center;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+}
+
+.navbar-active{
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .logo {

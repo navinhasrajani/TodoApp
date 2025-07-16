@@ -85,8 +85,8 @@ const Categories = () => {
 
   return (
     <>
-      <div className="p-6">
-        <h2 className="text-2xl font-bold mb-4">🗂 Categories</h2>
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <h2 className="text-4xl font-bold text-center mb-6">🗂 Categories</h2>
         <CategoryList
           categories={categories}
           onDelete={handleDeleteCategory}

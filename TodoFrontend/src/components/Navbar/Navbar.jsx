@@ -5,7 +5,7 @@ import logout from "../../assets/logout.png";
 import Logo from "../../assets/logo-nobg.png";
 import { useTheme } from "../../context/ThemeContext";
 import { useAuth } from "../../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -18,21 +18,21 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar flex justify-between items-center text-black p-4">
-      <div className="logo">
-        <img src={Logo} alt="Logo" className="w-24" />
+    <div className="navbar flex justify-between items-center text-black p-4 rounded">
+      <div>
+        <NavLink to='/' className='logo'><img src={Logo} alt="Logo" className="w-24" /></NavLink>
       </div>
 
-      <div>
+      <div className="text-2xl">
         <ul className="flex space-x-4">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/" className={({isActive}) => isActive ? 'navbar-active': ''}>Home</NavLink>
           </li>
           <li>
-            <Link to="/todos">Todos</Link>
+            <NavLink to="/todos" className={({isActive}) => isActive ? 'navbar-active': ''}>Todos</NavLink>
           </li>
           <li>
-            <Link to="/categories">Categories</Link>
+            <NavLink to="/categories" className={({isActive}) => isActive ? 'navbar-active': ''}>Categories</NavLink>
           </li>
         </ul>
       </div>
@@ -42,7 +42,7 @@ const Navbar = () => {
           {state.isAuthenticated ? (
             <>
               <li>
-                <Link to="/profile">Profile</Link>
+                <NavLink to="/profile" className={({isActive}) => isActive ? 'navbar-active': ''}>Profile</NavLink>
               </li>
               <li>
                 <button onClick={handleLogout}>
@@ -57,10 +57,10 @@ const Navbar = () => {
           ) : (
             <>
               <li>
-                <Link to="/login">Login</Link>
+                <NavLink to="/login">Login</NavLink>
               </li>
               <li>
-                <Link to="/signup">Sign Up</Link>
+                <NavLink to="/signup">Sign Up</NavLink>
               </li>
             </>
           )}

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
+import Logo from "../assets/Logo-nobg.png";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom"; // If using React Router for navigation
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ const Login = () => {
         password,
       });
 
-      setError(""); // Clear any previous error
+      setError("");
       localStorage.setItem("token", res.data.token);
 
       dispatch({
@@ -29,54 +30,87 @@ const Login = () => {
       });
 
       console.log("Login successful:", res.data);
-      navigate("/"); // Navigate to home
+      navigate("/");
     } catch (error) {
       const message = error.response?.data?.message || "Login failed";
       setError(message);
       console.error("Login failed:", message);
     }
   };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <label htmlFor="email">Email</label>
-            </td>
-            <td>
+    <div className="flex min-w-auto items-center justify-center divide-x-0 divide-gray-500">
+      <div className="w-1/2 hidden md:flex items-center justify-center">
+        <img src={Logo} alt="TüDü Logo" />
+      </div>
+      <div className="w-full md:w-1/2">
+        <div className="max-w-2xl p-20">
+          {/* <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          Login
+        </h2> */}
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Email
+              </label>
               <input
                 type="text"
-                placeholder="Email"
-                name="email"
+                id="email"
+                placeholder="Enter your email"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label htmlFor="password">Password</label>
-            </td>
-            <td>
+            </div>
+
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Password
+              </label>
               <input
                 type="password"
-                placeholder="Password"
-                name="password"
+                id="password"
+                placeholder="Enter your password"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2" className="text-center">
-              <button type="submit">Login</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p className="text-red-500">{error && error}</p>
-    </form>
+            </div>
+
+            <div className="justify-items-end">
+              <p className="text-sm text-neutral-600 underline">
+                Don't have an account?{" "}
+                <NavLink to="/signup" className="text-blue-700">
+                  Sign Up!
+                </NavLink>
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+            >
+              Login
+            </button>
+
+            {error && (
+              <div className="mb-4 text-center text-sm text-red-600 bg-red-100 p-2 rounded">
+                {error}
+              </div>
+            )}
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 
