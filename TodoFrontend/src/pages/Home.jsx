@@ -52,7 +52,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-8">
+    <div className="max-w-4xl mx-auto px-6 py-8 dark:bg-gray-900 dark:text-white">
       <h1 className="text-3xl mb-4">
         Welcome{" "}
         <span className="font-bold underline">{username || "Guest"}</span>👋

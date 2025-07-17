@@ -11,7 +11,7 @@ import Profile from './pages/Profile';
 function App() {
   const {theme, toggleTheme} = useTheme();
   return (
-    <>
+    <div className='dark:bg-gray-900 dark:text-white'>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -21,7 +21,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
-    </>
+    </div>
   )
 }
 
