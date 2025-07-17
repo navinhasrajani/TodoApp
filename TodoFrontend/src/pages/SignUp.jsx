@@ -1,16 +1,24 @@
 import { useState } from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom"; // If using React Router for navigation
+import Logo from "../assets/Logo-nobg.png";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
 
     try {
       const res = await axios.post("http://localhost:3000/auth/register", {
@@ -19,12 +27,11 @@ const SignUp = () => {
         password,
       });
 
-      setError(""); // Clear any previous error
+      setError("");
       localStorage.setItem("token", res.data.token);
       console.log("Registration successful:", res.data);
-      navigate('login')
+      navigate("/login");
     } catch (error) {
-      // Handle Axios errors
       const message = error.response?.data?.message || "Registration failed";
       setError(message);
       console.error("Registration failed:", message);
@@ -32,63 +39,111 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <label htmlFor="username">Username</label>
-            </td>
-            <td>
+    <div className="flex min-w-auto items-center justify-center divide-x-0 divide-gray-500">
+      <div className="w-1/2 hidden md:flex items-center justify-center">
+        <img src={Logo} alt="TüDü Logo" className="min-w-1/2" />
+      </div>
+
+      <div className="w-full md:w-1/2">
+        <div className="max-w-2xl p-20">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Username
+              </label>
               <input
                 type="text"
-                placeholder="Username"
-                name="username"
+                id="username"
+                placeholder="Enter your username"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label htmlFor="email">Email</label>
-            </td>
-            <td>
+            </div>
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Email
+              </label>
               <input
-                type="text"
-                placeholder="Email"
-                name="email"
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label htmlFor="password">Password</label>
-            </td>
-            <td>
+            </div>
+
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Password
+              </label>
               <input
                 type="password"
-                placeholder="Password"
-                name="password"
+                id="password"
+                placeholder="Enter your password"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2" className="text-center">
-              <button type="submit">Register</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        {username} {email} {password}
-      </p>
-      <p className="text-red-500">{error && error}</p>
-    </form>
+            </div>
+
+            <div>
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm your password"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="justify-items-end">
+              <p className="text-sm text-neutral-600 underline">
+                Already have an account?{" "}
+                <NavLink to="/login" className="text-blue-700">
+                  Login!
+                </NavLink>
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+            >
+              Create Account
+            </button>
+
+            {error && (
+              <div className="mb-4 text-center text-sm text-red-600 bg-red-100 p-2 rounded">
+                {error}
+              </div>
+            )}
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const Home = () => {
   const [username, setUsername] = useState(null);
   const [pendingCount, setPendingCount] = useState(0);
@@ -54,7 +54,8 @@ const Home = () => {
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
       <h1 className="text-3xl mb-4">
-        Welcome <span className="font-bold underline">{username || "Guest"}</span>👋
+        Welcome{" "}
+        <span className="font-bold underline">{username || "Guest"}</span>👋
       </h1>
 
       <p className="mb-6 text-gray-700">
@@ -63,36 +64,59 @@ const Home = () => {
       </p>
 
       {latestTodos.length === 0 ? (
-        <p className="text-gray-500 italic mb-2">No recently added todos found.</p>
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-gray-500 italic">No recently added todos found.</p>
+          <NavLink
+            to="/todos"
+            className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            ➕ Add a Todo
+          </NavLink>
+        </div>
       ) : (
         <>
-        <h2 className="text-xl font-semibold mb-2">🕒 Latest Todos</h2>
-        <ul className="space-y-2 mb-6">
-          {latestTodos.map((todo) => (
-            <li
-              key={todo._id}
-              className="bg-white shadow-sm p-3 rounded border border-gray-200"
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-xl font-semibold">🕒 Latest Todos</h2>
+            <NavLink
+              to="/todos"
+              className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
             >
-              <p className="font-medium">{todo.title}</p>
-              <p className="text-sm text-gray-500">
-                {todo.description || "No description"}
-              </p>
-            </li>
-          ))}
-        </ul>
+              ➕ Add a Todo
+            </NavLink>
+          </div>
+
+          <ul className="space-y-2 mb-6">
+            {latestTodos.map((todo) => (
+              <li
+                key={todo._id}
+                className="bg-white shadow-sm p-3 rounded border border-gray-200"
+              >
+                <p className="font-medium">{todo.title}</p>
+                <p className="text-sm text-gray-500">
+                  {todo.description || "No description"}
+                </p>
+              </li>
+            ))}
+          </ul>
         </>
       )}
 
-      <div className="mb-6 p-4 bg-yellow-100 border-l-4 border-yellow-400 rounded text-gray-800 italic">
-        <p>“{quote || 'loading quote'}”</p>
+      <div className="max-w-2xl mx-auto my-8">
+        <h2 className="text-2xl font-semibold text-yellow-700 mb-4">
+          🌟 Thought of the Day
+        </h2>
+        <div className="relative bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-6 rounded-lg shadow-md">
+          <p className="italic text-lg leading-relaxed text-center">
+            “{quote || "loading quote ⌛"}”
+          </p>
+          <span className="absolute -top-4 -left-4 text-4xl text-yellow-400 opacity-30 select-none">
+            ❝
+          </span>
+          <span className="absolute -bottom-4 -right-4 text-4xl text-yellow-400 opacity-30 select-none">
+            ❞
+          </span>
+        </div>
       </div>
-
-      <Link
-        to="/todos"
-        className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-      >
-        ➕ Add a Todo
-      </Link>
     </div>
   );
 };

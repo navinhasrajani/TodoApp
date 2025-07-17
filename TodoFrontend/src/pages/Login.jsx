@@ -40,8 +40,8 @@ const Login = () => {
 
   return (
     <div className="flex min-w-auto items-center justify-center divide-x-0 divide-gray-500">
-      <div className="w-1/2 hidden md:flex items-center justify-center">
-        <img src={Logo} alt="TüDü Logo" />
+      <div className="w-1/2 hidden md:flex items-center justify-center p-9">
+        <img src={Logo} alt="TüDü Logo" className="min-w-1/2"/>
       </div>
       <div className="w-full md:w-1/2">
         <div className="max-w-2xl p-20">
