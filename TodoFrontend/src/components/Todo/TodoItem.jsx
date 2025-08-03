@@ -10,6 +10,7 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
     isCompleted,
     priority = "medium",
     category = "general",
+    deadline,
   } = todo;
 
   return (
@@ -27,6 +28,10 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
       >
         <strong>Description:</strong> {description || "No description"}
       </p>
+
+      <div className="todo-deadline">
+        <strong>Deadline:</strong> {moment(deadline).format("MMM D, YYYY hh:mm A")}
+      </div>
 
       <div className="todo-created">
         <strong>Created:</strong> {moment(createdAt).format("MMM D, YYYY hh:mm A")}

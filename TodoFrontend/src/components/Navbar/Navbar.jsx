@@ -3,6 +3,7 @@ import lightTheme from "../../assets/lightTheme.png";
 import darkTheme from "../../assets/nightTheme.png";
 import logout from "../../assets/logout.png";
 import Logo from "../../assets/logo-nobg.png";
+import nightLogo from "../../assets/nightLogo-nobg.png"
 import { useTheme } from "../../context/ThemeContext";
 import { useAuth } from "../../context/AuthContext";
 import {useNavigate, NavLink } from "react-router-dom";
@@ -18,9 +19,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar flex justify-between items-center text-black p-4 rounded dark:bg-gray-900 dark:text-white">
+    <div className="navbar flex justify-between items-center text-black p-4 rounded dark:border-white dark:bg-gray-900 dark:text-white">
       <div>
-        <NavLink to='/' className='logo'><img src={Logo} alt="Logo" className="w-24" /></NavLink>
+        <NavLink to='/' className='logo'><img src={theme === 'light'? Logo: nightLogo} alt="Logo" className="w-24" /></NavLink>
       </div>
 
       <div className="text-2xl">
@@ -45,7 +46,7 @@ const Navbar = () => {
                 <NavLink to="/profile" className={({isActive}) => isActive ? 'navbar-active': ''}>Profile</NavLink>
               </li>
               <li>
-                <button onClick={handleLogout}>
+                <button onClick={handleLogout} className="">
                   <img
                     src={logout}
                     alt="Logout"

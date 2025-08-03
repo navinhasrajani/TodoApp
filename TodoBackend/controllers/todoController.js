@@ -14,8 +14,8 @@ const getTodos = async (req, res) => {
 //Create new todo
 const createTodo = async (req, res) => {
     try {
-        const { title, description, priority, category } = req.body;
-        console.log(title, description, priority, category);
+        const { title, description, priority, category, deadline } = req.body;
+        console.log(title, description, priority, category, deadline);
         if (!title) {
             return res.status(400).json({ message: 'Title is required' });
         }
@@ -25,7 +25,8 @@ const createTodo = async (req, res) => {
             title,
             description,
             priority: priority || 'medium',
-            category,
+            category: category || 'general',
+            deadline,
         })
 
         const savedTodo = await newTodo.save();
@@ -40,21 +41,23 @@ const createTodo = async (req, res) => {
 // Update todo by ID
 const updateTodo = async (req, res) => {
     try {
-        const { title, description, priority, isCompleted, category } = req.body;
+        const { title, description, priority, isCompleted, category, deadline } = req.body;
         const todoId = req.params.id;
-        const updatedTodo = await Todo.findByIdAndUpdate(
+        const updatedTodo = await Todo.findOneAndUpdate(
             { _id: todoId, user: req.user.id },
-            { title, description, priority, category, isCompleted },
+            { title, description, priority, category, isCompleted, deadline },
+            { new: true }
         );
+
         if (!updatedTodo) {
             return res.status(404).json({ message: 'Todo not found' });
         }
+
         res.status(200).json(updatedTodo);
+    } catch (err) {
+        res.status(400).json({ message: 'Error updating todo', error: err.message });
     }
-    catch (err) {
-        res.status(400).json({ message: 'Error finding todo', error: err.message });
-    }
-}
+};
 
 // Delete todo by ID
 const deleteTodo = async(req, res) => {

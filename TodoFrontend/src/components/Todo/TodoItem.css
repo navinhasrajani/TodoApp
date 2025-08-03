@@ -24,6 +24,12 @@
   color: #555;
 }
 
+.todo-deadline {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #777;
+}
+
 .todo-created {
   font-style: italic;
   font-size: 0.85rem;

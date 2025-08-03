@@ -26,14 +26,14 @@ const Home = () => {
   const fetchQuote = async () => {
     try {
       const res = await axios.get("https://api.quotable.io/random");
-      // console.log(res)
+      // console.log('quote response ->',res)
       if (res.data) {
         setQuote(res.data.content + " — " + res.data.author);
       }
     } catch (err) {
       console.error("Could not fetch quote:", err.message);
       setQuote(
-        "“Start where you are. Use what you have. Do what you can.” — Arthur Ashe"
+        "Start where you are. Use what you have. Do what you can. — Arthur Ashe"
       );
     }
   };
@@ -52,13 +52,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-8 dark:bg-gray-900 dark:text-white">
+    <div className="max-w-4xl mx-auto mt-3 px-6 py-5 dark:border-x dark:border-zinc-500">
       <h1 className="text-3xl mb-4">
         Welcome{" "}
         <span className="font-bold underline">{username || "Guest"}</span>👋
       </h1>
 
-      <p className="mb-6 text-gray-700">
+      <p className="mb-6 text-gray-700 dark:text-zinc-400">
         You have <span className="font-semibold">{pendingCount}</span> pending
         todos.
       </p>
@@ -79,9 +79,10 @@ const Home = () => {
             <h2 className="text-xl font-semibold">🕒 Latest Todos</h2>
             <NavLink
               to="/todos"
-              className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+              className="inline-flex items-center bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 dark:hover:bg-blue-400 transition-all duration-200 hover:scale-105 active:scale-95"
             >
-              ➕ Add a Todo
+              <span className="text-lg">➕</span>
+              <span>Add a Todo</span>
             </NavLink>
           </div>
 
@@ -89,10 +90,12 @@ const Home = () => {
             {latestTodos.map((todo) => (
               <li
                 key={todo._id}
-                className="bg-white shadow-sm p-3 rounded border border-gray-200"
+                className="bg-white dark:bg-zinc-900 p-3 rounded border border-gray-200 dark:border-zinc-700 shadow-sm dark:shadow-[0_0_12px_rgba(255,255,255,0.03)]"
               >
-                <p className="font-medium">{todo.title}</p>
-                <p className="text-sm text-gray-500">
+                <p className="font-medium text-gray-800 dark:text-white">
+                  {todo.title}
+                </p>
+                <p className="text-sm text-gray-500 dark:text-zinc-400">
                   {todo.description || "No description"}
                 </p>
               </li>
@@ -105,16 +108,10 @@ const Home = () => {
         <h2 className="text-2xl font-semibold text-yellow-700 mb-4">
           🌟 Thought of the Day
         </h2>
-        <div className="relative bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-6 rounded-lg shadow-md">
+        <div className="bg-yellow-100 dark:bg-yellow-900 border-l-4 border-yellow-500 dark:border-yellow-400 text-yellow-800 dark:text-yellow-200 p-6 rounded-lg shadow-md">
           <p className="italic text-lg leading-relaxed text-center">
             “{quote || "loading quote ⌛"}”
           </p>
-          <span className="absolute -top-4 -left-4 text-4xl text-yellow-400 opacity-30 select-none">
-            ❝
-          </span>
-          <span className="absolute -bottom-4 -right-4 text-4xl text-yellow-400 opacity-30 select-none">
-            ❞
-          </span>
         </div>
       </div>
     </div>

@@ -6,12 +6,13 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import Todo from './pages/Todo';
 import Categories from './pages/Categories';
-import CategoryItem from './components/Category/CategoryItem';
 import Profile from './pages/Profile';
+import './App.css';
 function App() {
   const {theme, toggleTheme} = useTheme();
   return (
-    <div className='dark:bg-gray-900 dark:text-white'>
+    <div className='dark:bg-gray-900  dark:text-white'>
+      {/* */}
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

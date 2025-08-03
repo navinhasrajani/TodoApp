@@ -8,6 +8,7 @@ const todoSchema = new mongoose.Schema({
     isCompleted: {type: Boolean, default: false},
     priority: {type: String, enum: ['low', 'medium', 'high'], default: 'medium'},
     category: {type: String, maxLength: 100, default: 'general'},
+    deadline: { type: Date },
     createdAt: {type: Date,default: Date.now},
 })
 

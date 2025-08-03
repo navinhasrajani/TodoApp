@@ -2,6 +2,8 @@ import { useEffect, useReducer, useState } from "react";
 import { todoReducer } from "../reducers/todoReducers";
 import axios from "axios";
 import TodoItem from "../components/Todo/TodoItem";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Todo = () => {
   const [todos, dispatch] = useReducer(todoReducer, []);
@@ -13,6 +15,7 @@ const Todo = () => {
     description: "",
     priority: "medium",
     category: "general",
+    deadline: null,
   });
   // Fetch todos
   useEffect(() => {
@@ -122,6 +125,7 @@ const Todo = () => {
         description: "",
         priority: "medium",
         category: "general",
+        deadline: null,
       });
       setIsExpanded(false); // collapse back after add
     } catch (err) {
@@ -185,6 +189,19 @@ const Todo = () => {
               <option value="medium">Medium</option>
               <option value="low">Low</option>
             </select>
+
+            <DatePicker
+              selected={newTodo.deadline}
+              onChange={(date) =>
+                setNewTodo((prev) => ({ ...prev, deadline: date }))
+              }
+              showTimeSelect
+              timeIntervals={15}
+              minDate={new Date()}
+              dateFormat="Pp" // P = locale date, p = locale time
+              placeholderText="Select date and time"
+              className="w-full p-2 border border-gray-300 rounded"
+            />
           </div>
         )}
 
