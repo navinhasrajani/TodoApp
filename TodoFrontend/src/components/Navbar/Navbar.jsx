@@ -1,7 +1,8 @@
 import "./Navbar.css";
 import lightTheme from "../../assets/lightTheme.png";
 import darkTheme from "../../assets/nightTheme.png";
-import logout from "../../assets/logout.png";
+import logoutLight from "../../assets/LogoutLightTheme.png";
+import logoutDark from "../../assets/LogoutDarkTheme.png";
 import Logo from "../../assets/logo-nobg.png";
 import nightLogo from "../../assets/nightLogo-nobg.png"
 import { useTheme } from "../../context/ThemeContext";
@@ -48,7 +49,7 @@ const Navbar = () => {
               <li>
                 <button onClick={handleLogout} className="">
                   <img
-                    src={logout}
+                    src={theme === "light" ? logoutLight : logoutDark}
                     alt="Logout"
                     className="w-6 h-6 cursor-pointer"
                   />

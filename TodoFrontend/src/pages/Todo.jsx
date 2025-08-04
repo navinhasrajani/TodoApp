@@ -134,7 +134,7 @@ const Todo = () => {
   };
 
   return (
-    <div className="home flex flex-col justify-center px-6 py-4 max-w-4xl mx-auto">
+    <div className="home flex flex-col justify-center px-6 py-4 max-w-4xl mx-auto ">
       <h1 className="text-4xl font-bold text-center mb-6">📋 Todos</h1>
 
       <div className="flex justify-end mb-4">
@@ -143,11 +143,11 @@ const Todo = () => {
           placeholder="Search in todos..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="px-4 py-2 w-64 border rounded-md bg-gray-100 focus:outline-none"
+          className="px-4 py-2 w-64 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-800 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
       <form
-        className="mb-6 bg-white p-4 rounded shadow transition-all duration-300"
+        className="mb-6 bg-white dark:bg-gray-900 p-4 rounded shadow transition-all duration-300"
         onSubmit={handleTodoSubmit}
       >
         <input
@@ -155,10 +155,13 @@ const Todo = () => {
           name="title"
           value={newTodo.title}
           onChange={(e) => handleInputChange(e)}
-          className="p-2 border rounded w-full mb-2"
+          className="p-2 border border-gray-300 dark:border-gray-600 rounded w-full mb-2 
+               bg-white dark:bg-gray-800 text-black dark:text-white 
+               placeholder-gray-500 dark:placeholder-gray-400"
           placeholder="What is needed to be Done?"
           required
         />
+
         {isExpanded && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 transition-all">
             <input
@@ -167,7 +170,9 @@ const Todo = () => {
               placeholder="Description (optional)"
               value={newTodo.description}
               onChange={handleInputChange}
-              className="p-2 border rounded w-full"
+              className="p-2 border border-gray-300 dark:border-gray-600 rounded w-full 
+                   bg-white dark:bg-gray-800 text-black dark:text-white 
+                   placeholder-gray-500 dark:placeholder-gray-400"
             />
 
             <input
@@ -176,14 +181,17 @@ const Todo = () => {
               placeholder="Category (default: general)"
               value={newTodo.category}
               onChange={handleInputChange}
-              className="p-2 border rounded w-full"
+              className="p-2 border border-gray-300 dark:border-gray-600 rounded w-full 
+                   bg-white dark:bg-gray-800 text-black dark:text-white 
+                   placeholder-gray-500 dark:placeholder-gray-400"
             />
 
             <select
               name="priority"
               value={newTodo.priority}
               onChange={handleInputChange}
-              className="p-2 border rounded w-full"
+              className="p-2 border border-gray-300 dark:border-gray-600 rounded w-full 
+                   bg-white dark:bg-gray-800 text-black dark:text-white"
             >
               <option value="high">High</option>
               <option value="medium">Medium</option>
@@ -198,9 +206,11 @@ const Todo = () => {
               showTimeSelect
               timeIntervals={15}
               minDate={new Date()}
-              dateFormat="Pp" // P = locale date, p = locale time
+              dateFormat="Pp"
               placeholderText="Select date and time"
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded 
+                   bg-white dark:bg-gray-800 text-black dark:text-white 
+                   placeholder-gray-500 dark:placeholder-gray-400"
             />
           </div>
         )}
@@ -208,16 +218,21 @@ const Todo = () => {
         {isExpanded && (
           <button
             type="submit"
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 
+                 dark:bg-blue-500 dark:hover:bg-blue-600"
           >
             Add Todo
           </button>
         )}
       </form>
       {loading ? (
-        <p className="text-center text-gray-500">Loading todos...</p>
+        <p className="text-center text-gray-500 dark:text-gray-400">
+          Loading todos...
+        </p>
       ) : filteredAndSortedTodos.length === 0 ? (
-        <p className="text-center text-gray-500 italic">No todos found.</p>
+        <p className="text-center text-gray-500 dark:text-gray-400 italic">
+          No todos found.
+        </p>
       ) : (
         <>
           {incompleteTodos.map((todo) => (
@@ -231,7 +246,7 @@ const Todo = () => {
 
           {completedTodos.length > 0 && (
             <>
-              <h2 className="mt-8 mb-2 text-xl font-semibold text-gray-600">
+              <h2 className="mt-8 mb-2 text-xl font-semibold text-gray-600 dark:text-gray-300">
                 ✅ Completed
               </h2>
               {completedTodos.map((todo) => (

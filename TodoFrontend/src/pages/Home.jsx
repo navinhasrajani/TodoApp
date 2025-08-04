@@ -52,7 +52,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto mt-3 px-6 py-5 dark:border-x dark:border-zinc-500">
+    <div className="max-w-4xl mx-auto mt-3 px-6 py-5"> 
+    {/* dark:border-x dark:border-zinc-500 */}
       <h1 className="text-3xl mb-4">
         Welcome{" "}
         <span className="font-bold underline">{username || "Guest"}</span>👋

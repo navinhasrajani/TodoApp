@@ -84,16 +84,16 @@ const Categories = () => {
   }, []);
 
   return (
-    <>
-      <div className="max-w-4xl mx-auto px-6 py-8">
-        <h2 className="text-4xl font-bold text-center mb-6">🗂 Categories</h2>
-        <CategoryList
-          categories={categories}
-          onDelete={handleDeleteCategory}
-          onEdit={handleEditCategory}
-        />
-      </div>
-    </>
+    <div className="max-w-4xl mx-auto px-6 py-8 bg-white dark:bg-gray-900 rounded">
+      <h2 className="text-4xl font-bold text-center mb-6 text-gray-800 dark:text-white">
+        🗂 Categories
+      </h2>
+      <CategoryList
+        categories={categories}
+        onDelete={handleDeleteCategory}
+        onEdit={handleEditCategory}
+      />
+    </div>
   );
 };
 
