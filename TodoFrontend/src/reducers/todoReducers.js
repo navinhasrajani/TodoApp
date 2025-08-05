@@ -11,7 +11,7 @@ export const todoReducer = (state, action) => {
 
         case "UPDATE_TODO":
             return state.map(todo =>
-                todo._id === action.payload._id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+                todo._id === action.payload._id ? { ...todo, ...action.payload } : todo
             );
 
         case "TOGGLE_TODO":

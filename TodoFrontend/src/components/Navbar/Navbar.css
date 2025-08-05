@@ -9,7 +9,8 @@
 
 .navbar-active{
   font-weight: 600;
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  @apply text-yellow-400 dark:drop-shadow-[0_0_6px_rgba(253,224,71,0.6)] font-semibold;
 }
 
 .logo {

@@ -59,6 +59,25 @@ const Todo = () => {
     }
   };
 
+  const updateTodo = async (id, editedTodo) => {
+    // console.log(id,editedTodo);
+    try{
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("No token found. User not logged in.");
+
+      const res = await axios.put(`http://localhost:3000/todos/${id}`, editedTodo,{ headers: { Authorization: `Bearer ${token}` }});
+      if (res.status === 200) {
+        dispatch({type: "UPDATE_TODO", payload: res.data});
+        console.log("Todo updated successfully");
+      } else {
+        console.error("Failed to update todo:", res.status);
+      }
+      // console.log(res);
+    }catch (err) {
+      console.error("Failed to delete todo:", err.message);
+    }
+  }
+
   const toggleTodo = async (todo) => {
     try {
       const token = localStorage.getItem("token");
@@ -241,6 +260,7 @@ const Todo = () => {
               todo={todo}
               onDelete={deleteTodo}
               onToggle={toggleTodo}
+              onUpdate={updateTodo}
             />
           ))}
 
@@ -255,6 +275,7 @@ const Todo = () => {
                   todo={todo}
                   onDelete={deleteTodo}
                   onToggle={toggleTodo}
+                  onUpdate={updateTodo}
                 />
               ))}
             </>
