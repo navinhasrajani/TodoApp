@@ -25,10 +25,10 @@ const Home = () => {
 
   const fetchQuote = async () => {
     try {
-      const res = await axios.get("https://api.quotable.io/random");
+      const res = await axios.get("http://localhost:3000/quote");
       // console.log('quote response ->',res)
       if (res.data) {
-        setQuote(res.data.content + " — " + res.data.author);
+        setQuote(res.data.quote + " — " + res.data.author);
       }
     } catch (err) {
       console.error("Could not fetch quote:", err.message);
@@ -52,8 +52,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto mt-3 px-6 py-5"> 
-    {/* dark:border-x dark:border-zinc-500 */}
+    <div className="max-w-4xl mx-auto mt-3 px-6 py-5">
+      {/* dark:border-x dark:border-zinc-500 */}
       <h1 className="text-3xl mb-4">
         Welcome{" "}
         <span className="font-bold underline">{username || "Guest"}</span>👋
@@ -68,7 +68,8 @@ const Home = () => {
         <div className="flex justify-between items-center mb-4">
           <p className="text-gray-500 italic">No recently added todos found.</p>
           <NavLink
-            to="/todos"
+            to={{ pathname: "/todos" }}
+            state={{ focus: true }}
             className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
           >
             ➕ Add a Todo
@@ -79,11 +80,11 @@ const Home = () => {
           <div className="flex justify-between items-center mb-2">
             <h2 className="text-xl font-semibold">🕒 Latest Todos</h2>
             <NavLink
-              to="/todos"
-              className="inline-flex items-center bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 dark:hover:bg-blue-400 transition-all duration-200 hover:scale-105 active:scale-95"
+              to={{ pathname: "/todos" }}
+              state={{ focus: true }}
+              className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
             >
-              <span className="text-lg">➕</span>
-              <span>Add a Todo</span>
+              ➕ Add a Todo
             </NavLink>
           </div>
 

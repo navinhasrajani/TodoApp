@@ -1,5 +1,6 @@
 //Todo controllers
 const Todo = require('../models/Todo');
+const User = require('../models/User');
 // Get all todos
 const getTodos = async (req, res) => {
     try {
@@ -31,6 +32,11 @@ const createTodo = async (req, res) => {
 
         const savedTodo = await newTodo.save();
         // console.log(savedTodo);
+
+        // Push the new todo into the user's todos array
+        await User.findByIdAndUpdate(req.user._id, {
+        $push: { todos: savedTodo._id }
+        });
         res.status(201).json(savedTodo);
     }
     catch (err) {

@@ -94,7 +94,7 @@ const TodoItem = ({ todo, onDelete, onToggle, onUpdate }) => {
           </select>
           <input
             type="datetime-local"
-            value={editedTodo.deadline?.slice(0, 16) || ""}
+            value={editedTodo.deadline ? moment(editedTodo.deadline).format("YYYY-MM-DDTHH:mm") : ""}
             onChange={(e) => setEditedTodo({ ...editedTodo, deadline: e.target.value })}
             onBlur={handleBlur}
             className="w-full border px-2 py-1 rounded bg-white dark:bg-gray-900 text-gray-800 dark:text-white"

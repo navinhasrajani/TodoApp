@@ -1,4 +1,5 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { todoReducer } from "../reducers/todoReducers";
 import axios from "axios";
 import TodoItem from "../components/Todo/TodoItem";
@@ -10,6 +11,8 @@ const Todo = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
+  const inputRef = useRef(null);
+  const location = useLocation();
   const [newTodo, setNewTodo] = useState({
     title: "",
     description: "",
@@ -17,6 +20,12 @@ const Todo = () => {
     category: "general",
     deadline: null,
   });
+  useEffect(() => {
+    // If we redirected with state { focus: true }
+    if (location.state?.focus) {
+      inputRef.current?.focus();
+    }
+  }, [location]);
   // Fetch todos
   useEffect(() => {
     const fetchTodos = async () => {
@@ -170,6 +179,7 @@ const Todo = () => {
         onSubmit={handleTodoSubmit}
       >
         <input
+          ref={inputRef}
           type="text"
           name="title"
           value={newTodo.title}

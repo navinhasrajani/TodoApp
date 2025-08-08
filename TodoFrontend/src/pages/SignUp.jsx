@@ -39,7 +39,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex min-w-auto items-center justify-center divide-x-0 divide-gray-500">
+    <div className="flex min-w-auto items-center justify-center dark:bg-gray-900 dark:text-white">
       <div className="w-1/2 hidden md:flex items-center justify-center">
         <img src={Logo} alt="TüDü Logo" className="min-w-1/2" />
       </div>
@@ -50,7 +50,7 @@ const SignUp = () => {
             <div>
               <label
                 htmlFor="username"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium dark:text-gray-300 mb-1"
               >
                 Username
               </label>
@@ -58,7 +58,7 @@ const SignUp = () => {
                 type="text"
                 id="username"
                 placeholder="Enter your username"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                className="w-full px-4 py-2 border border-gray-600 rounded-md dark:dark:bg-neutral-900 dark:text-white dark:placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
@@ -68,7 +68,7 @@ const SignUp = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium dark:text-gray-300 mb-1"
               >
                 Email
               </label>
@@ -76,7 +76,7 @@ const SignUp = () => {
                 type="email"
                 id="email"
                 placeholder="Enter your email"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                className="w-full px-4 py-2 border border-gray-600 rounded-md dark:bg-neutral-900 text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -86,7 +86,7 @@ const SignUp = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium dark:text-gray-300 mb-1"
               >
                 Password
               </label>
@@ -94,7 +94,7 @@ const SignUp = () => {
                 type="password"
                 id="password"
                 placeholder="Enter your password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                className="w-full px-4 py-2 border border-gray-600 rounded-md dark:bg-neutral-900 text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -104,7 +104,7 @@ const SignUp = () => {
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium dark:text-gray-300 mb-1"
               >
                 Confirm Password
               </label>
@@ -112,7 +112,7 @@ const SignUp = () => {
                 type="password"
                 id="confirmPassword"
                 placeholder="Confirm your password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                className="w-full px-4 py-2 border border-gray-600 rounded-md dark:bg-neutral-900 text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
@@ -120,9 +120,9 @@ const SignUp = () => {
             </div>
 
             <div className="justify-items-end">
-              <p className="text-sm text-neutral-600 underline">
+              <p className="text-sm text-gray-400 underline">
                 Already have an account?{" "}
-                <NavLink to="/login" className="text-blue-700">
+                <NavLink to="/login" className="text-blue-400 hover:text-blue-300">
                   Login!
                 </NavLink>
               </p>
@@ -136,7 +136,7 @@ const SignUp = () => {
             </button>
 
             {error && (
-              <div className="mb-4 text-center text-sm text-red-600 bg-red-100 p-2 rounded">
+              <div className="mb-4 text-center text-sm text-red-500 bg-red-900 bg-opacity-30 p-2 rounded">
                 {error}
               </div>
             )}

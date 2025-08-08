@@ -39,21 +39,21 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-w-auto items-center justify-center divide-x-0 divide-gray-500">
+    <div className="flex min-w-auto items-center justify-center bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      {/* Left logo panel */}
       <div className="w-1/2 hidden md:flex items-center justify-center p-9">
-        <img src={Logo} alt="TüDü Logo" className="min-w-1/2"/>
+        <img src={Logo} alt="TüDü Logo" className="min-w-1/2" />
       </div>
-      <div className="w-full md:w-1/2">
-        <div className="max-w-2xl p-20">
-          {/* <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Login
-        </h2> */}
 
+      {/* Right login panel */}
+      <div className="w-full md:w-1/2">
+        <div className="max-w-2xl p-8 md:p-20 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Email */}
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
               >
                 Email
               </label>
@@ -61,17 +61,18 @@ const Login = () => {
                 type="text"
                 id="email"
                 placeholder="Enter your email"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-blue-400 dark:bg-gray-700 dark:text-gray-100"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
 
+            {/* Password */}
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
               >
                 Password
               </label>
@@ -79,31 +80,37 @@ const Login = () => {
                 type="password"
                 id="password"
                 placeholder="Enter your password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-blue-400 dark:bg-gray-700 dark:text-gray-100"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
 
+            {/* Signup link */}
             <div className="justify-items-end">
-              <p className="text-sm text-neutral-600 underline">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 underline">
                 Don't have an account?{" "}
-                <NavLink to="/signup" className="text-blue-700">
+                <NavLink
+                  to="/signup"
+                  className="text-blue-700 dark:text-blue-400 hover:underline"
+                >
                   Sign Up!
                 </NavLink>
               </p>
             </div>
 
+            {/* Submit button */}
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition"
             >
               Login
             </button>
 
+            {/* Error message */}
             {error && (
-              <div className="mb-4 text-center text-sm text-red-600 bg-red-100 p-2 rounded">
+              <div className="mb-4 text-center text-sm text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900 p-2 rounded">
                 {error}
               </div>
             )}
